@@ -1,2 +1,2 @@
-# 3TEAM_challege_GSITM
-3TEAM_challege_GSITM
+# 3TEAM_challenge_GSITM
+3TEAM_challenge_GSITM
