@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utp-8">
+    <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+                                           
+</head>
+
+
+<body>
+<header class = "header">
+ <div class="header__logo">
+  <a href="home.html">
+      <h1>맛집 게시판</h1>
+  </a>
+<div class = "header__gnb">
+    <ul>
+        <li><a href="추천.html">추천게시판</a></li>
+        <li><a href="홍보.html">홍보게시판</a></li>
+        <li><a href="list.html">맛집게시판</a></li>
+    </ul>
+     </div>
+</div>
+</header>
+<h1 align="center"> 맛집게시판 </h1>
+
+<br>
+
+<table style = "margin :auto; text align=center;" class="tg">
+  <tr>
+    <th style="width: 5rem;">번호</th>
+    <th style="width: 8rem;">작성자</th>
+    <th style="width: 30rem;">제목</th>
+    <th style="width: 50rem;">내용</th>
+    <th style="width: 15rem;">작성일</th>
+  </tr>
+  <tbody id="rows">
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+
+  </tr>
+  </tbody>
+</table>
+
+<div class="btn">
+  <button class ="btn" onclick="moveForm()">글작성</button>
+</div>
+
+
+</body>
+<script>
+  var contentList = JSON.parse(localStorage.getItem("contents"));
+
+drawRows();
+function moveForm() {
+  location.href = 'form.html'
+}
+
+function drawRows() {
+  var templates = '';
+  var body = document.getElementById('rows');
+
+  for (var i=contentList.length-1; 0<=i; i--) {
+    var content  = contentList[i];
+    console.log(content);
+    templates += '<tr onclick="moveView('+i+')">';
+    templates += '<td style="text-align:center">'+content.no+'</td>';
+    templates += '<td style="text-align:center">'+content.writer+'</td>';
+    templates += '<td style="text-align:center">'+content.title+'</td>';
+    templates += '<td>'+content.review+'</td>';
+    templates += '<td style="text-align:center">'+toStringByFormatting(new Date(content.write_date))+'</td>';
+    templates += '</tr>';
+  }
+
+  body.innerHTML = templates;
+}
+
+function moveView(contentNo) {
+  location.href = 'view.html?no='+(contentNo+1);
+}
+
+function leftPad(value) {
+   if (value >= 10) { return value; } return `0${value}`; 
+   }
+
+
+function toStringByFormatting(source, delimiter = '-') {
+  const year = source.getFullYear(); 
+  const month = leftPad(source.getMonth() + 1); 
+  const day = leftPad(source.getDate());
+  return [year, month, day].join(delimiter);
+  }
+</script>
+</html>
+
