@@ -1,2 +1,1 @@
-# 3TEAM_challege_GSITM
-3TEAM_challege_GSITM
+develop 카테고리 확인바랍니다!
